@@ -29,3 +29,8 @@ To run this project locally:
 bash
 npm install
 npm start
+
+
+## 🔗 Live Demo
+https://timeline-visualizer-sgyi.vercel.app/ 
+
