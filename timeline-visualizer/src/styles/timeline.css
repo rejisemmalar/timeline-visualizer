@@ -1,0 +1,303 @@
+/* ========Global Background======== */
+.timeline-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 80px 16px;
+    background: radial-gradient(circle at top, #90ee90,
+            #add8e6, #F4F754, #20b2aa,
+            #ffffe0, #00fa9a, #ffe4e1, #2e8b57);
+    
+}
+
+/* ==========Mani Card============== */
+.timeline-box {
+    width: 100%;
+    max-width: 720px;
+    padding: 50px 30px;
+    border-radius: 26px;
+    background: linear-gradient(180deg,
+            #020024 0%,
+            #090979 35%,
+            #000000 100%);
+    box-shadow: 0 30px 70px rgba(192, 121, 121, 0.5);
+    position: relative;
+}
+
+/* ===== TITLE ===== */
+.timeline-title {
+    font-style: italic;
+    text-align: center;
+    color: white;
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+}
+
+/* ===== ADD BUTTON ===== */
+.add-milestone-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 40px;
+    border: none;
+    font-weight: 600;
+    color: white;
+    font-style: italic;
+    background: linear-gradient(135deg, #f30493, #dd2476);
+    margin-bottom: 40px;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(255, 81, 47, 0.6);
+}
+
+/* ===== CENTER LINE ===== */
+.timeline-box::before {
+    content: "";
+    position: absolute;
+    top: 140px;
+    bottom: 40px;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+    transform: translateX(-50%);
+}
+
+/* ===== YEAR BADGE ===== */
+.year-badge {
+    text-align: center;
+    background: black;
+    color: white;
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin: 30px auto 20px;
+    display: block;
+    width: fit-content;
+}
+
+/* ===== TIMELINE CARD ===== */
+.timeline-card {
+    width: 46%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 30px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.35s ease;
+}
+
+/* Left / Right alternation */
+.timeline-card:nth-child(odd) {
+    margin-left: 0;
+}
+
+.timeline-card:nth-child(even) {
+    margin-left: auto;
+}
+
+/* Connector dot */
+.timeline-card::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+}
+
+.timeline-card:nth-child(odd)::before {
+    right: -28px;
+}
+
+.timeline-card:nth-child(even)::before {
+    left: -28px;
+}
+
+/* Hover 3D effect */
+.timeline-card:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+.timeline-card h6 {
+    margin-top: 6px;
+}
+
+/* Education */
+.timeline-card:nth-child(4n + 1) {
+    box-shadow: 0 0 30px rgba(33, 150, 243, 0.5);
+}
+
+/* Work */
+.timeline-card:nth-child(4n + 2) {
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
+}
+
+/* Travel */
+.timeline-card:nth-child(4n + 3) {
+    box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
+}
+
+/* Personal */
+.timeline-card:nth-child(4n + 4) {
+    box-shadow: 0 0 30px rgba(233, 30, 99, 0.6);
+}
+
+/* ===== MODAL ===== */
+.custom-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.custom-modal {
+    width: 92%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(18px);
+    border-radius: 26px;
+    padding: 30px;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.55);
+    animation: modalPop 0.35s ease;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.85) rotateX(15deg);
+        opacity: 0;
+    }
+}
+
+/* Inputs */
+.custom-modal input,
+.custom-modal select,
+.custom-modal textarea {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-actions .success {
+    background: #00c853;
+    color: white;
+}
+
+.modal-actions .danger {
+    background: #d50000;
+    color: white;
+}
+
+.modal-actions button {
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Image */
+.custom-modal img {
+    width: 100%;
+    border-radius: 14px;
+    margin-top: 10px;
+}
+
+/* delete */
+.confirm-modal {
+  max-width: 420px;
+  text-align: center;
+}
+
+.confirm-modal p {
+  margin-top: 14px;
+  line-height: 1.6;
+}
+
+.confirm-modal .danger {
+  background: #d50000;
+  color: white;
+}
+
+.file-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #18036f;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ===== IMAGE PREVIEW ===== */
+
+.image-preview:hover {
+  transform: scale(1.03);
+}
+
+/* ===== FULL IMAGE MODAL ===== */
+
+/* Preview image */
+.image-preview-wrapper img {
+  width: 100%;
+  height: 220px;       
+  object-fit: cover;   
+  display: block;
+  cursor: zoom-in;
+}
+
+.image-view-modal {
+  position: relative;
+}
+
+.image-view-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 14px;
+  display: block;
+}
+
+.image-view-modal button {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ===========Responsive=========== */
+@media (max-width: 768px) {
+    .timeline-box::before {
+        left: 12px;
+    }
+
+    .timeline-card {
+        width: 100%;
+        margin-left: 0 !important;
+        padding-left: 30px;
+    }
+
+    .timeline-card::before {
+        left: -22px !important;
+    }
+}
