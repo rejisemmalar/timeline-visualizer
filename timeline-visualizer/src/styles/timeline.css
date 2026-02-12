@@ -4,10 +4,8 @@
     display: flex;
     justify-content: center;
     padding: 80px 16px;
-    background: radial-gradient(circle at top, #90ee90,
-            #add8e6, #F4F754, #20b2aa,
-            #ffffe0, #00fa9a, #ffe4e1, #2e8b57);
-    
+    background: radial-gradient(circle at top, #c7f9cc, #e0f2fe 60%, #f8fafc);
+
 }
 
 /* ==========Mani Card============== */
@@ -16,22 +14,36 @@
     max-width: 720px;
     padding: 50px 30px;
     border-radius: 26px;
-    background: linear-gradient(180deg,
-            #020024 0%,
-            #090979 35%,
-            #000000 100%);
-    box-shadow: 0 30px 70px rgba(192, 121, 121, 0.5);
+    background: linear-gradient(180deg, #020024 0%, #090979 35%, #000000 100%);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
     position: relative;
 }
 
+
 /* ===== TITLE ===== */
 .timeline-title {
-    font-style: italic;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: #e5e7eb;
     text-align: center;
-    color: white;
-    margin-bottom: 32px;
-    letter-spacing: 1px;
+    margin-bottom: 24px;
 }
+
+.timeline-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+}
+
 
 /* ===== ADD BUTTON ===== */
 .add-milestone-btn {
@@ -120,7 +132,8 @@
 
 /* Hover 3D effect */
 .timeline-card:hover {
-    transform: translateY(-8px) scale(1.03);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .timeline-card h6 {
@@ -220,70 +233,86 @@
 
 /* delete */
 .confirm-modal {
-  max-width: 420px;
-  text-align: center;
+    max-width: 420px;
+    text-align: center;
 }
 
 .confirm-modal p {
-  margin-top: 14px;
-  line-height: 1.6;
+    margin-top: 14px;
+    line-height: 1.6;
 }
 
 .confirm-modal .danger {
-  background: #d50000;
-  color: white;
+    background: #d50000;
+    color: white;
 }
 
 .file-btn {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 8px;
-  background: #18036f;
-  color: white;
-  cursor: pointer;
-  font-weight: 500;
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #18036f;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
 }
 
 /* ===== IMAGE PREVIEW ===== */
 
 .image-preview:hover {
-  transform: scale(1.03);
+    transform: scale(1.03);
 }
 
 /* ===== FULL IMAGE MODAL ===== */
 
 /* Preview image */
 .image-preview-wrapper img {
-  width: 100%;
-  height: 220px;       
-  object-fit: cover;   
-  display: block;
-  cursor: zoom-in;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
 }
 
 .image-view-modal {
-  position: relative;
+    position: relative;
 }
 
 .image-view-modal img {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 14px;
-  display: block;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 14px;
+    display: block;
 }
 
 .image-view-modal button {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  background: #000;
-  color: #fff;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  cursor: pointer;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
 }
+
+/* errors */
+
+.field-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.field-error {
+    position: absolute;
+    bottom: -14px;
+    left: 6px;
+    font-size: 12px;
+    color: #ff4d4f;
+}
+
 
 /* ===========Responsive=========== */
 @media (max-width: 768px) {

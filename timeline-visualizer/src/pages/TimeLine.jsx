@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/timeline.css"
+import "../styles/timeline.css";
 
 const STORAGE_KEY = "timeline_milestone";
 
@@ -19,6 +19,7 @@ function TimeLine() {
   const [isEdit, setIsEdit] = useState(false);
   const [showConfirmDel, setShowConfirmDel] = useState(false);
   const [showImgModal, setShowImgModal] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // load data from local storage
   useEffect(() => {
@@ -50,6 +51,10 @@ function TimeLine() {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
+
     // img handling
     if (name === "image" && files[0]) {
       const file = files[0];
@@ -69,18 +74,27 @@ function TimeLine() {
 
   //save
   const handleSave = () => {
-    if (!formData.date || !formData.category || !formData.note) {
-      alert("Fill all fields");
+    const newErrors = {};
+
+    if (!formData.date) newErrors.date = "This field is required";
+    if (!formData.category) newErrors.category = "This field is required";
+    if (!formData.note.trim()) newErrors.note = "This field is required";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
+
     let updated;
     if (isEdit) {
       updated = mileStones.map((m) => (m.id === formData.id ? formData : m));
     } else {
       updated = [...mileStones, { ...formData, id: Date.now() }];
     }
+
     saveToStorage(updated);
     setShowModal(false);
+    setErrors({});
   };
 
   //delete
@@ -148,36 +162,55 @@ function TimeLine() {
         <div className="custom-modal-backdrop">
           <div className="custom-modal">
             <h4>{isEdit ? "Edit Milestone" : "Add Milestone"}</h4>
+            <div className="field-group">
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+              />
+              <div className="error-slot">
+                {errors.date && (
+                  <small className="field-error">{errors.date}</small>
+                )}
+              </div>
+            </div>
 
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-            />
+            <div className="field-group">
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              >
+                <option value="">Select Category</option>
+                <option>Education</option>
+                <option>Work</option>
+                <option>Travel</option>
+                <option>Celebration</option>
+                <option>Happy Mind</option>
+                <option>Sad Mind</option>
+                <option>Personal</option>
+              </select>
+              <div className="error-slot">
+                {errors.category && (
+                  <small className="field-error">{errors.category}</small>
+                )}
+              </div>
+            </div>
 
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-            >
-              <option value="">Select Category</option>
-              <option>Education</option>
-              <option>Work</option>
-              <option>Travel</option>
-              <option>Celebration</option>
-              <option>Happy Mind</option>
-              <option>Sad Mind</option>
-              <option>Personal</option>
-            </select>
-
-            <textarea
-              name="note"
-              placeholder="Important note"
-              value={formData.note}
-              onChange={handleChange}
-            />
-
+            <div className="field-group">
+              <textarea
+                name="note"
+                placeholder="Important note"
+                value={formData.note}
+                onChange={handleChange}
+              />
+              <div className="error-slot">
+                {errors.note && (
+                  <small className="field-error">{errors.note}</small>
+                )}
+              </div>
+            </div>
             <label className="file-btn">
               Choose Image
               <input
